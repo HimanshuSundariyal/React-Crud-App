@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Userlistinglist from './components/userlisting';
 import EditformModel from './components/editformmodel';
+import AdduserListing from './components/adduserformmodel';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 class App extends Component {
@@ -25,6 +25,7 @@ class App extends Component {
 		}
 		],
 		showeditmodel:false,
+		showaddmodel:false,
 		pageTitle: "UserListing",
 		editindex:1
 	}
@@ -32,12 +33,28 @@ class App extends Component {
 	handelEdit = id => {
 		this.setState({ showeditmodel:true, editindex:id });	
 	}
-	handelDelete = () => {
-		alert(0);
-	}
+	handelDelete = (arrayindex) => {
+		
+		if(this.state.userlisting.length >1)
+		{
+		var newupdatessate = [...this.state.userlisting];
+	    newupdatessate = newupdatessate.filter((_, i) => i !== arrayindex)
+		this.setState({ userlisting:newupdatessate});
+		}
+		else
+		{
+			alert("This is Last Element");
+		}	
+		}
 	handelpopup = () => {
 		this.setState({ showeditmodel:false })
+		this.setState({ showaddmodel:false })
 	}
+	
+	handelAddUser = () =>{
+		this.setState({showaddmodel: true})
+	}
+	
 	handeleditformsubmit = (e) => {	
 	let firstname = document.getElementById('firstname').value;
 	let lastname = document.getElementById('lastname').value;
@@ -53,6 +70,20 @@ class App extends Component {
 	this.setState({ userlisting:newupdatessate, showeditmodel:false });
 	e.preventDefault();
 	}
+	
+	
+	handeladduserlisting = (e) =>{
+		let firstname = document.getElementById('firstname').value;
+		let lastname = document.getElementById('lastname').value;
+		let email = document.getElementById('email').value;
+		let contact = document.getElementById('contact').value;
+		let arraylength = this.state.userlisting.length+1;
+		let newuserdate =[{'id':arraylength,'firstname':firstname,'lastname':lastname, 'Email':email, 'Phone':contact}]
+		var newupdatessate = [...this.state.userlisting];
+		var newuserlisting =  [...newupdatessate, ...newuserdate];
+		this.setState({ userlisting:newuserlisting, showaddmodel:false });
+		e.preventDefault();
+	}	
 
   render() {
     return (
@@ -64,9 +95,19 @@ class App extends Component {
         <div className="table-responsive">
 		<Userlistinglist userdate={this.state.userlisting} onEdit={this.handelEdit} onDelete={this.handelDelete} />
 		<div className="clearfix"></div>  
+		
+		<button onClick={this.handelAddUser}>Add User</button>
+		
+		
 		{this.state.showeditmodel &&
 		<EditformModel userdata={this.state.userlisting.filter(userlisting => userlisting.id == this.state.editindex)} closemodel={this.handelpopup} formsubmit={this.handeleditformsubmit}/>
 		}
+
+
+		{this.state.showaddmodel &&
+		<AdduserListing closemodel={this.handelpopup} formsubmit={this.handeladduserlisting}/>
+		}		
+		
 		</div>  
         </div>
 	</div>

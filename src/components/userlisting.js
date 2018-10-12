@@ -25,7 +25,7 @@ class UserListing extends Component {
 		</td>
 		<td>
 		<p data-placement="top" data-toggle="tooltip" title="Delete">
-		<button className="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span className="glyphicon glyphicon-trash"></span></button></p>
+		<button onClick ={() => this.props.onDelete(this.props.userdate.findIndex(i => i.id == item.id))} className="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span className="glyphicon glyphicon-trash"></span></button></p>
 	</td> 
 </tr>	
    ))}

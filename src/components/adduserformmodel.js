@@ -1,39 +1,37 @@
 import React, { Component } from 'react';
-class EditformModel extends Component {
+class AdduserformModel extends Component {
   render() {
-	  const { userdata } = this.props;
     return (
-	<div id="myModal"   role="dialog">
+	<div id="adduserModel" role="dialog">
 	  <div className="modal-dialog">
 		<div className="modal-content">
 		  <div className="modal-header">
-		  <h4 className="modal-title">Edit User:</h4>
+		  <h4 className="modal-title">Add User </h4>
 			<button onClick={this.props.closemodel} type="button" className="close" data-dismiss="modal">&times;</button>
 		  </div>
 		  <div className="modal-body">
 			<form onSubmit={this.props.formsubmit}>
 			  <div className="form-group">
 				<label>First Name:</label>
-				<input type="text" ref="firstname" className="form-control" id="firstname" value={userdata[0]['firstname']}/>
+				<input type="text" ref="firstname" className="form-control" id="firstname"/>
 			  </div>
 			  <div className="form-group">
 				<label>Last Name:</label>
-				<input type="text" className="form-control" id="lastname" value={userdata[0]['lastname']} />
+				<input type="text" className="form-control" id="lastname"/>
 			  </div>
 			  <div className="form-group">
 				<label>Email:</label>
-				<input type="email" className="form-control" id="email" value={userdata[0]['Email']} />
+				<input type="email" className="form-control" id="email"/>
 			  </div>
 			  <div className="form-group">
 				<label>Contact:</label>
-				<input type="text" className="form-control" id="contact" />
+				<input type="text" className="form-control" id="contact"/>
 			  </div>	
 			  <button type="submit" className="btn btn-default">Submit</button> 
 			  
 			</form>
 		  </div>
 		  <div className="modal-footer">
-			<input type="hidden" name="user_id" id="user_id" value={userdata[0]['id']}/>
 			<button onClick={this.props.closemodel} type="button" className="btn btn-default" data-dismiss="modal">Close</button>
 		  </div>
 		</div>
@@ -42,4 +40,4 @@ class EditformModel extends Component {
     );
   }
 }
-export default EditformModel;
+export default AdduserformModel;
