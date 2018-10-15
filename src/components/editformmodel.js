@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 class EditformModel extends Component {
   render() {
-	  const { userdata } = this.props;
+	  const { userdata } = this.props; 
     return (
 	<div id="myModal"   role="dialog">
 	  <div className="modal-dialog">
@@ -14,19 +14,19 @@ class EditformModel extends Component {
 			<form onSubmit={this.props.formsubmit}>
 			  <div className="form-group">
 				<label>First Name:</label>
-				<input type="text" ref="firstname" className="form-control" id="firstname" value={userdata[0]['firstname']}/>
+				<input type="text" ref="firstname" className="form-control" id="firstname" defaultValue= {userdata[0]['firstname']}/>
 			  </div>
 			  <div className="form-group">
 				<label>Last Name:</label>
-				<input type="text" className="form-control" id="lastname" value={userdata[0]['lastname']} />
+				<input type="text" className="form-control" id="lastname" defaultValue={userdata[0]['lastname']} />
 			  </div>
 			  <div className="form-group">
 				<label>Email:</label>
-				<input type="email" className="form-control" id="email" value={userdata[0]['Email']} />
+				<input type="email" className="form-control" id="email" defaultValue={userdata[0]['Email']} />
 			  </div>
 			  <div className="form-group">
 				<label>Contact:</label>
-				<input type="text" className="form-control" id="contact" />
+				<input type="text" className="form-control" id="contact" defaultValue={userdata[0]['Phone']}/>
 			  </div>	
 			  <button type="submit" className="btn btn-default">Submit</button> 
 			  
